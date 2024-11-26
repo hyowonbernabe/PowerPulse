@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "271716606314",
+    "project_id": "powerpulse-56790",
+    "storage_bucket": "powerpulse-56790.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271716606314:android:40b586c66a9aad2737c513",
+        "android_client_info": {
+          "package_name": "com.example.powerpulse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBagyeRbXkQzVcHt5r3avkwnpcyDY-vPeg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
