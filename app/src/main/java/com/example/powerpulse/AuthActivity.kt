@@ -20,7 +20,7 @@ class AuthActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, TestActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -59,7 +59,7 @@ class AuthActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // If sign is successful, display a message to the user.
                         Toast.makeText(this, "Login Successful.", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, TestActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {

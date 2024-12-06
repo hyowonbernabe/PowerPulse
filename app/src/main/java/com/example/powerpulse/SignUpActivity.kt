@@ -19,7 +19,7 @@ class SignUpActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, TestActivity::class.java)
             startActivity(intent)
             finish()
         }
