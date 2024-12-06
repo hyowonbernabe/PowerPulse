@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/brand_edit_text"
+            android:drawableStart="@drawable/ic_brand_email"
+            android:drawablePadding="8dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/brand_edit_text"
+            android:drawableStart="@drawable/ic_brand_pwd"
+            android:drawablePadding="8dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textForgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forgot password?"
+            android:textColor="@color/brand_primary"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/brand_button_solid"
+            android:text="Log in"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/textSocialMediaLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--- Login with Social Media ---"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/imageSocialMediaLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <ImageButton
+                android:id="@+id/imageButtonFacebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_facebook"
+                android:layout_marginEnd="8dp"/>
+
+            <ImageButton
+                android:id="@+id/imageButtonGoogle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_google"
+                android:layout_marginEnd="8dp"/>
+
+            <ImageButton
+                android:id="@+id/imageButtonTwitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_github" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account?"
+                android:textColor="@color/brand_tertiary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Sign up"
+                android:textColor="@color/brand_primary"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
