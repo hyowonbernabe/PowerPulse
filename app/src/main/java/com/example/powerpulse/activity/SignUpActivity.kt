@@ -78,7 +78,7 @@ class SignUpActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // If sign up is successful, display a message to the user.
                         Toast.makeText(this, "Account created successfully.", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, AuthActivity::class.java)
+                        val intent = Intent(this, SignInActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
@@ -89,7 +89,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         textViewSignIn.setOnClickListener {
-            val intent = Intent(this, AuthActivity::class.java)
+            val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
     }

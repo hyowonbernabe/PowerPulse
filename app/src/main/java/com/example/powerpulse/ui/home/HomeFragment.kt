@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.powerpulse.R
@@ -29,6 +33,7 @@ class HomeFragment : Fragment() {
         listDevices()
 
         // Initialize views
+        val textViewPairButton : ImageView = binding.textViewPairButton
 
         // Initialize RecyclerView
         binding.recyclerViewDevice.layoutManager = LinearLayoutManager(requireContext())
@@ -37,6 +42,12 @@ class HomeFragment : Fragment() {
                 it
             )
         }
+
+        // Logic for Pair Button
+        textViewPairButton.setOnClickListener {
+            
+        }
+
 
         return root
     }
