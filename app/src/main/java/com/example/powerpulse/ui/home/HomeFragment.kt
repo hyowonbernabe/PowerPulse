@@ -33,6 +33,9 @@ class HomeFragment : Fragment() {
         // Initialize views
         val textViewPairButton : ImageView = binding.textViewPairButton
 
+        // Initialize device list
+        addDevice("Prototype Device", "Prototype Description", R.drawable.ic_plug)
+
         // Initialize RecyclerView
         binding.recyclerViewDevice.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewDevice.adapter = context?.let {

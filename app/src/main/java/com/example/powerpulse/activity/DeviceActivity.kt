@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import com.example.powerpulse.R
 
 class DeviceActivity : AppCompatActivity() {
@@ -20,29 +21,29 @@ class DeviceActivity : AppCompatActivity() {
         val textViewDayEle = findViewById<TextView>(R.id.textViewDayEle)
         val textViewMonthEle = findViewById<TextView>(R.id.textViewMonthEle)
         val TextViewPowerText = findViewById<TextView>(R.id.textViewPowerText)
-        val ImageViewPowerButton = findViewById<ImageView>(R.id.imageViewPowerButton)
-        val mainLayout = findViewById<ConstraintLayout>(R.id.main)
 
         // Get data from intent
         val deviceName = intent.getStringExtra("deviceName") ?: "Prototype Device"
-        val deviceDescription = intent.getStringExtra("deviceDescription") ?: "Prototype Description"
-        var booleanPower = intent.getBooleanExtra("powerState", false) // Retrieve power state
+        val deviceDescription =
+            intent.getStringExtra("deviceDescription") ?: "Prototype Description"
+        val switchState = intent.getBooleanExtra("switchState", false) // Retrieve switch state
 
         // Set data to TextViews
         textViewDeviceName.text = deviceName
         textViewDeviceDescription.text = deviceDescription
 
-        ImageViewPowerButton.setOnClickListener {
-            if (!booleanPower) {
-                mainLayout.setBackgroundColor(resources.getColor(R.color.brand_power_green, theme))
-                TextViewPowerText.text = "Power On"
-                booleanPower = true
-            } else {
-                mainLayout.setBackgroundColor(resources.getColor(R.color.brand_power_red, theme))
-                TextViewPowerText.text = "Power Off"
-                booleanPower = false
-            }
-        }
+        // Update background color based on switch state
+        val backgroundColor =
+            if (switchState) R.color.brand_power_green else R.color.brand_power_red
+        findViewById<ConstraintLayout>(R.id.main).setBackgroundColor(
+            ContextCompat.getColor(
+                this,
+                backgroundColor
+            )
+        )
 
+        // Update Power Text
+        val powerText = if (switchState) "Power On" else "Power Off"
+        TextViewPowerText.text = powerText
     }
 }

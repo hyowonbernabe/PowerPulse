@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.Switch
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -22,7 +21,7 @@ class DeviceRecyclerAdapter(
 ) : RecyclerView.Adapter<DeviceRecyclerAdapter.ViewHolder>() {
 
     private val expandedStates = BooleanArray(deviceName.size)// Track expansion states
-    private val powerStates = BooleanArray(deviceName.size) // To track power state for each device
+    private val switchStates = BooleanArray(deviceName.size) // Track switch states
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val deviceName: TextView = itemView.findViewById(R.id.RecyclerDeviceName)
@@ -61,11 +60,6 @@ class DeviceRecyclerAdapter(
             notifyItemChanged(position)
         }
 
-        // Handle "Switch Power"
-        holder.switchPower.setOnCheckedChangeListener { _, isChecked ->
-            powerStates[position] = isChecked
-        }
-
         // Handle "Disconnect Device" click
         holder.disconnectDevice.setOnClickListener {
             removeItem(position)
@@ -76,9 +70,17 @@ class DeviceRecyclerAdapter(
             val intent = Intent(context, DeviceActivity::class.java).apply {
                 putExtra("deviceName", deviceName[position])
                 putExtra("deviceDescription", deviceDescription[position])
-                putExtra("powerState", powerStates[position]) // Pass power state
+                putExtra("switchState", switchStates[position]) // Pass switch state
             }
             ContextCompat.startActivity(context, intent, null)
+        }
+
+        // Update switch state and background color
+        holder.switchPower.isChecked = switchStates[position]
+        holder.switchPower.setOnCheckedChangeListener { _, isChecked ->
+            switchStates[position] = isChecked
+            // Notify change to trigger background update
+            notifyDataSetChanged()
         }
     }
 
@@ -90,5 +92,4 @@ class DeviceRecyclerAdapter(
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, deviceName.size) // Updates indices of remaining items
     }
-
 }
