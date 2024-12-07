@@ -1,4 +1,4 @@
-package com.example.powerpulse
+package com.example.powerpulse.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.powerpulse.R
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -20,7 +21,7 @@ class AuthActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            val intent = Intent(this, TestActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -59,7 +60,7 @@ class AuthActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // If sign is successful, display a message to the user.
                         Toast.makeText(this, "Login Successful.", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this, TestActivity::class.java)
+                        val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
