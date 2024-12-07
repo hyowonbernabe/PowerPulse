@@ -16,25 +16,25 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp">
 
-        <TextView
+        <ImageView
             android:id="@+id/textViewProfilePicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_user"
+            android:src="@drawable/ic_user"
             android:paddingEnd="128dp" />
 
-        <TextView
+        <ImageView
             android:id="@+id/textViewBrandLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_brand_logo"
+            android:src="@drawable/ic_brand_logo"
             android:paddingEnd="128dp" />
 
-        <TextView
+        <ImageView
             android:id="@+id/textViewPairButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_plus" />
+            android:src="@drawable/ic_plus" />
 
     </LinearLayout>
 
@@ -65,8 +65,8 @@
                 android:drawableStart="@drawable/ic_energy"
                 android:drawablePadding="8dp"
                 android:text="0.54 kWh"
-                android:textSize="32dp"
                 android:textColor="@color/black"
+                android:textSize="32dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -120,66 +120,21 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@+id/analyticalCard"
-        tools:layout_editor_absoluteX="16dp">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="560dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/analyticalCard">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewDevice"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            tools:itemCount="5"
+            tools:listitem="@layout/device_layout" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_plug"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:paddingEnd="8dp"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingEnd="60dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:text="Prototype Device 1"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="20dp"
-                    android:paddingBottom="8dp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:text="Lorem Ipsum"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <Switch
-                android:id="@+id/switchPrototypeDevice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="74dp"
-                tools:layout_editor_absoluteY="370dp" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.powerpulse.R
 import com.example.powerpulse.activity.AuthActivity
 import com.example.powerpulse.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +18,9 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private var deviceNameList = mutableListOf<String>()
+    private var deviceDescriptionList = mutableListOf<String>()
+    private var devicePictureList = mutableListOf<Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,9 +31,27 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        listDevices()
+
         // Initialize views
 
+        // Initialize RecyclerView
+        binding.recyclerViewDevice.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewDevice.adapter = DeviceRecyclerAdapter(deviceNameList, deviceDescriptionList, devicePictureList)
+
         return root
+    }
+
+    private fun addDevice(deviceName: String, deviceDescription: String, devicePicture: Int) {
+        deviceNameList.add(deviceName)
+        deviceDescriptionList.add(deviceDescription)
+        devicePictureList.add(devicePicture)
+    }
+
+    private fun listDevices() {
+        for (i in 1..9) {
+            addDevice("Prototype Device $i", "Lorem Ipsum", R.drawable.ic_plug)
+        }
     }
 
     override fun onDestroyView() {
