@@ -49,22 +49,22 @@ class SignUpActivity : AppCompatActivity() {
             val confirmPasswordSignUp = editTextConfirmPassword.text.toString().trim()
 
             if (fullNameSignUp.isEmpty()) {
-                Toast.makeText(this, "Full Name cannot be empty.", Toast.LENGTH_SHORT).show()
+                editTextFullName.error = "Fullname cannot be empty"
                 return@setOnClickListener
             }
 
             if (emailSignUp.isEmpty()) {
-                Toast.makeText(this, "Email cannot be empty.", Toast.LENGTH_SHORT).show()
+                editTextFullName.error = "Email cannot be empty"
                 return@setOnClickListener
             }
 
             if (passwordSignUp.isEmpty()) {
-                Toast.makeText(this, "Password cannot be empty.", Toast.LENGTH_SHORT).show()
+                editTextPassword.error = "Password cannot be empty"
                 return@setOnClickListener
             }
 
             if (confirmPasswordSignUp.isEmpty()) {
-                Toast.makeText(this, "Confirm Password cannot be empty.", Toast.LENGTH_SHORT).show()
+                editTextConfirmPassword.error = "Confirm Password cannot be empty"
                 return@setOnClickListener
             }
 

@@ -1,15 +1,27 @@
 package com.example.powerpulse.ui.home
 
+import android.bluetooth.BluetoothClass.Device
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.powerpulse.R
+import com.example.powerpulse.activity.AuthActivity
+import com.example.powerpulse.activity.DeviceActivity
 
-class DeviceRecyclerAdapter(private var deviceName: List<String>, private var deviceDescription: List<String>, private var devicePicture: List<Int>) :
+class DeviceRecyclerAdapter(
+    private var deviceName: List<String>,
+    private var deviceDescription: List<String>,
+    private var devicePicture: List<Int>,
+    private val context: Context) :
     RecyclerView.Adapter<DeviceRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,8 +44,12 @@ class DeviceRecyclerAdapter(private var deviceName: List<String>, private var de
         holder.deviceDescription.text = deviceDescription[position]
         holder.devicePicture.setImageResource(devicePicture[position])
 
-        holder.itemView.setOnClickListener { v: View ->
-            Toast.makeText(v.context, "Clicked " + deviceName[position], Toast.LENGTH_SHORT).show()
+        holder.itemView.setOnClickListener {
+            // Create an Intent to start DeviceActivity
+            val intent = Intent(context, DeviceActivity::class.java).apply {
+                putExtra("deviceId", position)
+            }
+            ContextCompat.startActivity(context, intent, null)
         }
     }
 

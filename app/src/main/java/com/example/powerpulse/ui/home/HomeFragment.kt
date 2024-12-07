@@ -37,7 +37,11 @@ class HomeFragment : Fragment() {
 
         // Initialize RecyclerView
         binding.recyclerViewDevice.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerViewDevice.adapter = DeviceRecyclerAdapter(deviceNameList, deviceDescriptionList, devicePictureList)
+        binding.recyclerViewDevice.adapter = context?.let {
+            DeviceRecyclerAdapter(deviceNameList, deviceDescriptionList, devicePictureList,
+                it
+            )
+        }
 
         return root
     }
