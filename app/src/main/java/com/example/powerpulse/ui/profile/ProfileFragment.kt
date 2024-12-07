@@ -1,4 +1,4 @@
-package com.example.powerpulse.ui.settings
+package com.example.powerpulse.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.powerpulse.activity.AuthActivity
-import com.example.powerpulse.databinding.FragmentSettingsBinding
+import com.example.powerpulse.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class SettingsFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
-    private var _binding: FragmentSettingsBinding? = null
+    private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,7 +22,7 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Initialize View Binding
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val buttonTest: Button = binding.buttonTest

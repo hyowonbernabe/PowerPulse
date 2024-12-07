@@ -17,18 +17,11 @@
         tools:layout_editor_absoluteX="16dp">
 
         <ImageView
-            android:id="@+id/textViewProfilePicture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_user"
-            android:paddingEnd="128dp" />
-
-        <ImageView
             android:id="@+id/textViewBrandLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_brand_logo"
-            android:paddingEnd="128dp" />
+            android:paddingEnd="320dp" />
 
         <ImageView
             android:id="@+id/textViewPairButton"

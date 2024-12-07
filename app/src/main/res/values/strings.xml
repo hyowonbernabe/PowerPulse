@@ -2,6 +2,8 @@
     <string name="app_name">PowerPulse</string>
     <string name="title_home">Home</string>
     <string name="title_analytics">Analytics</string>
-    <string name="title_settings">Settings</string>
+    <string name="title_profile">Profile</string>
     <string name="default_web_client_id">271716606314-q7pej45h4hpamccm0n4rjqauj5bfcf9t.apps.googleusercontent.com</string>
+    <string name="chevron_toggle">Toggle Chevron</string>
+    <string name="sample_text">This is the expandable content.</string>
 </resources>

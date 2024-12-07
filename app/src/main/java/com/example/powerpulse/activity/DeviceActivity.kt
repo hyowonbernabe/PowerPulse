@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.powerpulse.R
 
 class DeviceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge() // Make status bar transparent for cleaner look
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device)
 

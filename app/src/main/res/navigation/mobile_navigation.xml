@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_analytics" />
 
     <fragment
-        android:id="@+id/navigation_settings"
-        android:name="com.example.powerpulse.ui.settings.SettingsFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:id="@+id/navigation_profile"
+        android:name="com.example.powerpulse.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
