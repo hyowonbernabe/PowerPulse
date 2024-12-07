@@ -1,5 +1,6 @@
 package com.example.powerpulse.ui.home
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.powerpulse.R
@@ -30,8 +30,6 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        listDevices()
-
         // Initialize views
         val textViewPairButton : ImageView = binding.textViewPairButton
 
@@ -45,7 +43,41 @@ class HomeFragment : Fragment() {
 
         // Logic for Pair Button
         textViewPairButton.setOnClickListener {
-            
+            // Inflate the custom layout
+            val view = layoutInflater.inflate(R.layout.pair_dialogue, null)
+
+            // Create the dialog
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setView(view)
+
+            // Initialize views
+            val editTextDeviceName = view.findViewById<EditText>(R.id.editTextDeviceName)
+            val editTextDeviceDescription = view.findViewById<EditText>(R.id.editTextDeviceDescription)
+            val buttonPairDevice = view.findViewById<Button>(R.id.buttonPairDevice)
+
+            // Show the dialog
+            val dialog = builder.create()
+            dialog.show()
+
+            buttonPairDevice.setOnClickListener {
+                val deviceName = editTextDeviceName.text.toString().trim()
+                val deviceDescription = editTextDeviceDescription.text.toString().trim()
+
+                if (deviceName.isEmpty()) {
+                    editTextDeviceName.error = "Device Name cannot be empty"
+                    return@setOnClickListener
+                }
+
+                if (deviceDescription.isEmpty()) {
+                    editTextDeviceDescription.error = "Device Description cannot be empty"
+                    return@setOnClickListener
+                }
+
+                // Add the device to the list
+                addDevice(deviceName, deviceDescription, R.drawable.ic_plug)
+
+                dialog.dismiss()
+            }
         }
 
 
@@ -56,12 +88,6 @@ class HomeFragment : Fragment() {
         deviceNameList.add(deviceName)
         deviceDescriptionList.add(deviceDescription)
         devicePictureList.add(devicePicture)
-    }
-
-    private fun listDevices() {
-        for (i in 1..9) {
-            addDevice("Prototype Device $i", "Lorem Ipsum", R.drawable.ic_plug)
-        }
     }
 
     override fun onDestroyView() {

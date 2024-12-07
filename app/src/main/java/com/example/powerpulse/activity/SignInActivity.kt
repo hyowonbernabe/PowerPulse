@@ -43,7 +43,7 @@ class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge() // Make status bar transparent for cleaner look
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        setContentView(R.layout.signin_auth)
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
