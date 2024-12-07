@@ -27,9 +27,6 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         // Initialize views
-        val textView: TextView = binding.textHome
-
-        textView.text = "This is home Fragment"
 
         return root
     }
