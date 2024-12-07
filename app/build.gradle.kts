@@ -60,4 +60,5 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.glide)
     implementation(libs.play.services.auth)
+    implementation(libs.facebook.android.sdk)
 }
