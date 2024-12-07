@@ -12,7 +12,12 @@
           "package_name": "com.example.powerpulse"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "271716606314-q7pej45h4hpamccm0n4rjqauj5bfcf9t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBagyeRbXkQzVcHt5r3avkwnpcyDY-vPeg"
