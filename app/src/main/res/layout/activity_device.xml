@@ -5,28 +5,119 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/brand_power_red"
     tools:context=".activity.DeviceActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
-        android:padding="16dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/device_name"
+            android:id="@+id/textViewDeviceName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Device Name"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:text="Prototype Device"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
 
         <TextView
-            android:id="@+id/device_description"
+            android:id="@+id/textViewDeviceDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Device Description"
-            android:textSize="18sp" />
+            android:text="Prototype Description"
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:paddingEnd="50dp"
+                android:textAlignment="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Day Ele(kWh)"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/textViewDayEle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.23"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:paddingStart="50dp"
+                android:textAlignment="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Month Ele(kWh)"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/textViewMonthEle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.32"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:src="@drawable/ic_plug_white"/>
+
+        <TextView
+            android:id="@+id/textViewPowerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Power Off"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:paddingBottom="180dp"/>
+
+        <ImageView
+            android:id="@+id/imageViewPowerButton"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_power"
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.Switch
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -20,8 +21,8 @@ class DeviceRecyclerAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<DeviceRecyclerAdapter.ViewHolder>() {
 
-    // Track expansion states
-    private val expandedStates = BooleanArray(deviceName.size)
+    private val expandedStates = BooleanArray(deviceName.size)// Track expansion states
+    private val powerStates = BooleanArray(deviceName.size) // To track power state for each device
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val deviceName: TextView = itemView.findViewById(R.id.RecyclerDeviceName)
@@ -30,6 +31,7 @@ class DeviceRecyclerAdapter(
         val expandableContent: View = itemView.findViewById(R.id.expandableContent)
         val chevron: ImageView = itemView.findViewById(R.id.imageViewChevronDown)
         val disconnectDevice: TextView = itemView.findViewById(R.id.expandableDelete)
+        val switchPower: Switch = itemView.findViewById(R.id.switchPower)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -59,6 +61,11 @@ class DeviceRecyclerAdapter(
             notifyItemChanged(position)
         }
 
+        // Handle "Switch Power"
+        holder.switchPower.setOnCheckedChangeListener { _, isChecked ->
+            powerStates[position] = isChecked
+        }
+
         // Handle "Disconnect Device" click
         holder.disconnectDevice.setOnClickListener {
             removeItem(position)
@@ -67,7 +74,9 @@ class DeviceRecyclerAdapter(
         // Navigate to DeviceActivity on item click
         holder.itemView.setOnClickListener {
             val intent = Intent(context, DeviceActivity::class.java).apply {
-                putExtra("deviceId", position)
+                putExtra("deviceName", deviceName[position])
+                putExtra("deviceDescription", deviceDescription[position])
+                putExtra("powerState", powerStates[position]) // Pass power state
             }
             ContextCompat.startActivity(context, intent, null)
         }

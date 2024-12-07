@@ -1,25 +1,73 @@
 package com.example.powerpulse.activity
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.powerpulse.R
 
 class DeviceActivity : AppCompatActivity() {
+
+    private var booleanPower: Boolean = false // Default power state
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge() // Make status bar transparent for cleaner look
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_device)
 
-        // Access the arguments (device ID) passed to the activity
-        val deviceId = intent.getIntExtra("deviceId", -1)
-        // Fetch device details based on the device ID and update the UI
-        // For example:
-        // val device = getDeviceById(deviceId) // Fetch device details from a data source
+        val textViewDeviceName = findViewById<TextView>(R.id.textViewDeviceName)
+        val textViewDeviceDescription = findViewById<TextView>(R.id.textViewDeviceDescription)
+        val textViewDayEle = findViewById<TextView>(R.id.textViewDayEle)
+        val textViewMonthEle = findViewById<TextView>(R.id.textViewMonthEle)
+        val TextViewPowerText = findViewById<TextView>(R.id.textViewPowerText)
+        val ImageViewPowerButton = findViewById<ImageView>(R.id.imageViewPowerButton)
+        val mainLayout = findViewById<ConstraintLayout>(R.id.main)
 
-        val deviceName = findViewById<TextView>(R.id.device_name)
-        val deviceDescription = findViewById<TextView>(R.id.device_description)
+        // Get data from intent
+        val deviceName = intent.getStringExtra("deviceName") ?: "Prototype Device"
+        val deviceDescription = intent.getStringExtra("deviceDescription") ?: "Prototype Description"
+
+        // Set data to TextViews
+        textViewDeviceName.text = deviceName
+        textViewDeviceDescription.text = deviceDescription
+
+        // Restore the power state if the activity is recreated
+        if (savedInstanceState != null) {
+            booleanPower = savedInstanceState.getBoolean("powerState", false)
+        }
+
+        updateUI()
+
+        ImageViewPowerButton.setOnClickListener {
+            booleanPower = !booleanPower
+            updateUI()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save the current power state
+        outState.putBoolean("powerState", booleanPower)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        // Restore the power state
+        booleanPower = savedInstanceState.getBoolean("powerState", false)
+        updateUI()
+    }
+
+    private fun updateUI() {
+        val mainLayout = findViewById<ConstraintLayout>(R.id.main)
+        val TextViewPowerText = findViewById<TextView>(R.id.textViewPowerText)
+        if (booleanPower) {
+            mainLayout.setBackgroundColor(resources.getColor(R.color.brand_power_green, theme))
+            TextViewPowerText.text = "Power On"
+        } else {
+            mainLayout.setBackgroundColor(resources.getColor(R.color.brand_power_red, theme))
+            TextViewPowerText.text = "Power Off"
+        }
     }
 }
