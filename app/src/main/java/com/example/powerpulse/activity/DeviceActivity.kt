@@ -22,6 +22,8 @@ class DeviceActivity : AppCompatActivity() {
         val textViewMonthEle = findViewById<TextView>(R.id.textViewMonthEle)
         val TextViewPowerText = findViewById<TextView>(R.id.textViewPowerText)
 
+        //
+
         // Get data from intent
         val deviceName = intent.getStringExtra("deviceName") ?: "Prototype Device"
         val deviceDescription =

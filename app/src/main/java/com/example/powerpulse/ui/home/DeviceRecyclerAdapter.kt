@@ -1,5 +1,6 @@
 package com.example.powerpulse.ui.home
 
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -104,6 +105,33 @@ class DeviceRecyclerAdapter(
             switchStates[position] = isChecked
             // Notify change to trigger background update
             notifyDataSetChanged()
+        }
+
+        // TimePicker logic
+        val deviceTimeTextView: TextView = holder.itemView.findViewById(R.id.DeviceTime)
+        deviceTimeTextView.setOnClickListener {
+            val currentHour = 12
+            val currentMinute = 0
+            val is24HourFormat = false // Use 12-hour format
+
+            val timePickerDialog = TimePickerDialog(
+                context,
+                { _, hourOfDay, minute ->
+                    // Update the time text
+                    val amPm = if (hourOfDay >= 12) "PM" else "AM"
+                    val formattedHour = if (hourOfDay % 12 == 0) 12 else hourOfDay % 12
+                    val formattedTime = String.format("%02d:%02d", formattedHour, minute)
+
+                    // Update TextViews
+                    deviceTimeTextView.text = formattedTime
+                    val amPmTextView: TextView = holder.itemView.findViewById(R.id.DeviceTimeAMPM)
+                    amPmTextView.text = amPm
+                },
+                currentHour,
+                currentMinute,
+                is24HourFormat
+            )
+            timePickerDialog.show()
         }
 
         // Configure each day's click listener
