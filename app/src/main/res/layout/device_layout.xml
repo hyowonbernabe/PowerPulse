@@ -87,8 +87,90 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone"
             android:padding="16dp">
+
+            <LinearLayout
+                android:id="@+id/DeviceTimeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/DeviceTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4:00"
+                    android:textColor="@color/black"
+                    android:textSize="32dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="8dp"/>
+
+                <TextView
+                    android:id="@+id/DeviceTimeAMPM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AM"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/DeviceSunday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_s"
+                    android:paddingEnd="18dp"
+                    android:paddingLeft="8dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceMonday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_m"
+                    android:paddingEnd="18dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceTuesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_t"
+                    android:paddingEnd="18dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceWednesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_w"
+                    android:paddingEnd="18dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceThursday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_t"
+                    android:paddingEnd="18dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceFriday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_f"
+                    android:paddingEnd="18dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceSaturday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_s"/>
+
+            </LinearLayout>
+
+
 
             <TextView
                 android:id="@+id/expandableCalendar"
@@ -97,7 +179,8 @@
                 android:drawableStart="@drawable/ic_calendar"
                 android:drawablePadding="8dp"
                 android:padding="8dp"
-                android:text="Add Schedule" />
+                android:text="Add Schedule"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/expandableDelete"
@@ -106,7 +189,8 @@
                 android:drawableStart="@drawable/ic_trash"
                 android:drawablePadding="8dp"
                 android:padding="8dp"
-                android:text="Disconnect Device" />
+                android:text="Disconnect Device"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
     </LinearLayout>
