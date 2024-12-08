@@ -16,6 +16,9 @@
         android:theme="@style/Theme.PowerPulse"
         tools:targetApi="31">
         <activity
+            android:name=".FacebbokAuthActivity"
+            android:exported="false" />
+        <activity
             android:name=".GithubAuthActivity"
             android:exported="false" />
         <activity
