@@ -16,6 +16,15 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.PowerPulse" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <style name="SCREEN">
+            <item name="android:background">@color/white</item>
+        </style>
+        <style name="TEXT">
+            <item name="android:textColor">@color/black</item>
+        </style>
+        <style name="BUTTON">
+            <item name="android:background">@color/brand_primary</item>
+            <item name="android:textColor">@color/black</item>
+        </style>
     </style>
 </resources>

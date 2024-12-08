@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     android:clickable="true"
@@ -69,9 +72,9 @@
                     android:paddingBottom="8dp"/>
 
                 <Switch
+                    android:id="@+id/switchPower"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/switchPower"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             </LinearLayout>
@@ -84,17 +87,123 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/expandableCalendar"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_calendar"
-                android:drawablePadding="8dp"
-                android:padding="8dp"
-                android:text="Add Schedule" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/DeviceTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4:00"
+                    android:textColor="@color/black"
+                    android:textSize="32dp"
+                    android:textStyle="bold"
+                    android:paddingLeft="8dp"/>
+
+                <TextView
+                    android:id="@+id/DeviceTimeAMPM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AM"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/DeviceSunday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_s"
+                    android:paddingEnd="18dp"
+                    android:paddingLeft="8dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceMonday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_m"
+                    android:paddingEnd="18dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceTuesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_t"
+                    android:paddingEnd="18dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceWednesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_w"
+                    android:paddingEnd="18dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceThursday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_t"
+                    android:paddingEnd="18dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceFriday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_f"
+                    android:paddingEnd="18dp"/>
+
+                <ImageView
+                    android:id="@+id/DeviceSaturday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_letter_s"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Action"
+                    android:textColor="@color/black"
+                    android:paddingStart="8dp"/>
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="2dp">
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTurnOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Turn Off"
+                        android:paddingEnd="72dp"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTurnOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Turn On"/>
+
+                </RadioGroup>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/expandableDelete"
@@ -103,7 +212,8 @@
                 android:drawableStart="@drawable/ic_trash"
                 android:drawablePadding="8dp"
                 android:padding="8dp"
-                android:text="Disconnect Device" />
+                android:text="Disconnect Device"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
     </LinearLayout>

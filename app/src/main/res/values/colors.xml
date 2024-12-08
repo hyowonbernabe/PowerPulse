@@ -10,4 +10,7 @@
     <color name="brand_primary">#4285F4</color>
     <color name="brand_tertiary">#757575</color>
     <color name="brand_secondary">#444444</color>
+    <color name="brand_power_green">#00CB98</color>
+    <color name="brand_power_red">#FF797B</color>
+    <color name="my_dark_primary">#444444</color>
 </resources>
