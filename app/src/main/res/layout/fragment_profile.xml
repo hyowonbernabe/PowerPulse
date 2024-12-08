@@ -10,6 +10,7 @@
         android:id="@+id/linearLayoutProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/SCREEN"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -17,6 +18,7 @@
             android:id="@+id/textViewProfileName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TEXT"
             android:text="Hi, Name!"
             android:textColor="@color/black"
             android:textSize="32dp"
@@ -29,6 +31,7 @@
             android:id="@+id/textViewProfileRole"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TEXT"
             android:text="Owner"
             android:textSize="24dp"
             android:textColor="@color/black"
@@ -41,6 +44,7 @@
         android:id="@+id/buttonDarkMode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/SCREEN"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:focusable="true"
@@ -54,11 +58,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/SCREEN"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/SCREEN"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="16dp">
@@ -72,6 +78,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/TEXT"
                         android:drawableStart="@drawable/ic_dark_mode"
                         android:drawablePadding="8dp"
                         android:text="Dark Mode"
@@ -98,6 +105,7 @@
         android:id="@+id/buttonAddFamilyUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/SCREEN"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:focusable="true"
@@ -111,11 +119,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/SCREEN"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/SCREEN"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="16dp">
@@ -124,11 +134,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    style="@style/SCREEN"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/TEXT"
                         android:text="Add Family Member"
                         android:drawableStart="@drawable/ic_user_plus"
                         android:drawablePadding="8dp"
@@ -149,6 +161,7 @@
         android:id="@+id/buttonNotification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/SCREEN"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:focusable="true"
@@ -162,11 +175,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/SCREEN"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/SCREEN"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="16dp">
@@ -175,11 +190,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    style="@style/SCREEN"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/TEXT"
                         android:text="Notification"
                         android:drawableStart="@drawable/ic_notification"
                         android:drawablePadding="8dp"
@@ -200,6 +217,7 @@
         android:id="@+id/buttonSignOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/SCREEN"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:focusable="true"
@@ -213,11 +231,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/SCREEN"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/SCREEN"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="16dp">
@@ -226,11 +246,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    style="@style/SCREEN"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/TEXT"
                         android:drawableStart="@drawable/ic_sign_out"
                         android:drawablePadding="8dp"
                         android:text="Sign Out"
