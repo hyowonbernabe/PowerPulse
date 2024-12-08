@@ -22,9 +22,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var database: DatabaseReference
 
-    private lateinit var textViewConsumption: TextView
-    private lateinit var switchPower: Switch
-
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge() // Make status bar transparent for cleaner look
         super.onCreate(savedInstanceState)
@@ -44,29 +41,6 @@ class MainActivity : AppCompatActivity() {
         )
 
         navView.setupWithNavController(navController)
-
-        textViewConsumption = findViewById(R.id.textViewConsumption)
-        switchPower = findViewById(R.id.switchPower)
-
-        fetchData()
     }
 
-    private fun fetchData() {
-        val databaseReference = FirebaseDatabase.getInstance().getReference("device1")
-
-        databaseReference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val power = snapshot.child("power").getValue(Int::class.java)
-                if (power != null) {
-                    textViewConsumption.text = "$power W"
-                } else {
-                    textViewConsumption.text = "0 W"
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                textViewConsumption.text = "Error: ${error.message}"
-            }
-        })
-    }
 }

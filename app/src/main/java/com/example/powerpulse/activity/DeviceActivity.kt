@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.powerpulse.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class DeviceActivity : AppCompatActivity() {
 
@@ -44,5 +48,28 @@ class DeviceActivity : AppCompatActivity() {
         // Update Power Text
         val powerText = if (switchState) "Power On" else "Power Off"
         TextViewPowerText.text = powerText
+
+        fetchData()
     }
+
+    private fun fetchData() {
+        val databaseReference = FirebaseDatabase.getInstance().getReference("device1")
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val consumption = snapshot.child("power").getValue(Int::class.java)
+                if (consumption != null) {
+                    findViewById<TextView>(R.id.textViewConsumption)?.text = "${consumption ?: 0.0} kWh"
+                } else {
+                    findViewById<TextView>(R.id.textViewConsumption)?.text = "${consumption ?: 0.0} kWh"
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                findViewById<TextView>(R.id.textViewConsumption)?.text = "Error: ${error.message}"
+            }
+        })
+    }
+
+
 }
