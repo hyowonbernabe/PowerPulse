@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.powerpulse.R
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.firestore
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -33,6 +35,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+        val db = Firebase.firestore
 
         // Initialize views
         val editTextEmail = findViewById<EditText>(R.id.editTextEmailSignUp)
@@ -76,7 +79,18 @@ class SignUpActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(emailSignUp, passwordSignUp)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // If sign up is successful, display a message to the user.
+                        // If sign up is successful
+
+                        // Add user to Firestore
+                        val user = hashMapOf(
+                            "email" to emailSignUp,
+                            "fullName" to fullNameSignUp
+                        )
+
+                        db.collection("user")
+                            .add(user)
+
+                        // Display a message to the user.
                         Toast.makeText(this, "Account created successfully.", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, SignInActivity::class.java)
                         startActivity(intent)

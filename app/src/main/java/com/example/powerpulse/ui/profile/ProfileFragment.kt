@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.example.powerpulse.activity.SignInActivity
 import com.example.powerpulse.databinding.FragmentProfileBinding
@@ -25,9 +26,9 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val buttonTest: Button = binding.buttonTest
+        val buttonSignOut: CardView = binding.buttonSignOut
 
-        buttonTest.setOnClickListener {
+        buttonSignOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(requireContext(), SignInActivity::class.java)
             startActivity(intent)
