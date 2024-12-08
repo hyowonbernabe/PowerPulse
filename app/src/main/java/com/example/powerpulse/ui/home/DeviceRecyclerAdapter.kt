@@ -10,10 +10,12 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Switch
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.powerpulse.R
 import com.example.powerpulse.activity.DeviceActivity
+import com.google.firebase.database.FirebaseDatabase
 
 class DeviceRecyclerAdapter(
     private var deviceName: MutableList<String>,
@@ -101,9 +103,30 @@ class DeviceRecyclerAdapter(
 
         // Update switch state and background color
         holder.switchPower.isChecked = switchStates[position]
+
+        // Set the Firebase reference for the current device (assuming device1 is the reference)
+        val deviceRef = FirebaseDatabase.getInstance("https://powerpulse-56790-default-rtdb.asia-southeast1.firebasedatabase.app/")
+            .getReference("device1")
+
         holder.switchPower.setOnCheckedChangeListener { _, isChecked ->
+            // Update the local switch state
             switchStates[position] = isChecked
-            // Notify change to trigger background update
+
+            // Update the relayState in Firebase based on switch state
+            val newRelayState = if (isChecked) false else true
+
+            // Update Firebase with the new relayState
+            deviceRef.child("relayState").setValue(newRelayState).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Optionally, show a Toast or handle success
+                    Toast.makeText(context, "Relay state updated", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Optionally, handle failure
+                    Toast.makeText(context, "Failed to update relay state", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            // Notify the adapter to refresh the switch state and trigger background color update
             notifyDataSetChanged()
         }
 

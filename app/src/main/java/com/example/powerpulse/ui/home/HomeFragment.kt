@@ -97,11 +97,15 @@ class HomeFragment : Fragment() {
 
         val editTextDeviceName = view.findViewById<EditText>(R.id.editTextDeviceName)
         val editTextDeviceDescription = view.findViewById<EditText>(R.id.editTextDeviceDescription)
+        val editTextAccessLink = view.findViewById<EditText>(R.id.editTextAccessLink)
+        val editTextAccessKey = view.findViewById<EditText>(R.id.editTextAccessKey)
         val buttonPairDevice = view.findViewById<Button>(R.id.buttonPairDevice)
 
         buttonPairDevice.setOnClickListener {
             val deviceName = editTextDeviceName.text.toString().trim()
             val deviceDescription = editTextDeviceDescription.text.toString().trim()
+            val accessLink = editTextAccessLink.text.toString().trim()
+            val accessKey = editTextAccessKey.text.toString().trim()
 
             if (deviceName.isEmpty()) {
                 editTextDeviceName.error = "Device Name cannot be empty"
@@ -110,6 +114,16 @@ class HomeFragment : Fragment() {
 
             if (deviceDescription.isEmpty()) {
                 editTextDeviceDescription.error = "Device Description cannot be empty"
+                return@setOnClickListener
+            }
+
+            if (accessLink.isEmpty()) {
+                editTextAccessLink.error = "Access Link cannot be empty"
+                return@setOnClickListener
+            }
+
+            if (accessKey.isEmpty()) {
+                editTextAccessKey.error = "Access Key cannot be empty"
                 return@setOnClickListener
             }
 
