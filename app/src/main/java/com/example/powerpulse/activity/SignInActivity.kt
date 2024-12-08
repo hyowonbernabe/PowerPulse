@@ -17,16 +17,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.firestore
 
 
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+
 
     companion object {
         private const val RC_SIGN_IN = 9001
@@ -47,7 +46,7 @@ class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge() // Make status bar transparent for cleaner look
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        setContentView(R.layout.signin_auth)
 
         val btnGitHub = findViewById<ImageButton>(R.id.imageButtonGitHub)
         btnGitHub.setOnClickListener {
@@ -106,7 +105,7 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-    // Configure Google Sign-In
+        // Configure Google Sign-In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("271716606314-q7pej45h4hpamccm0n4rjqauj5bfcf9t.apps.googleusercontent.com")
             .requestEmail()

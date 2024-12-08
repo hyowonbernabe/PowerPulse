@@ -62,5 +62,5 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.glide)
     implementation(libs.play.services.auth)
-    implementation("com.facebook.android:facebook-android-sdk:16.1.3")
+    implementation(libs.facebook.android.sdk)
 }
