@@ -52,12 +52,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Day Ele(kWh)"
+                    android:text="Current Watts"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
 
                 <TextView
-                    android:id="@+id/textViewDayEle"
+                    android:id="@+id/textViewCurrentWatts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.23"
@@ -79,12 +79,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Month Ele(kWh)"
+                    android:text="Total kWh"
                     android:textSize="18sp"
                     android:textColor="@color/white"/>
 
                 <TextView
-                    android:id="@+id/textViewMonthEle"
+                    android:id="@+id/textViewTotalKWH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.32"
