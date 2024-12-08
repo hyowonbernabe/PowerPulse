@@ -64,6 +64,7 @@ class HomeFragment : Fragment() {
         builder.setView(view)
 
         val dialog = builder.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
 
         val editTextDeviceName = view.findViewById<EditText>(R.id.editTextDeviceName)
