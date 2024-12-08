@@ -33,6 +33,18 @@ class DeviceRecyclerAdapter(
         val switchPower: Switch = itemView.findViewById(R.id.switchPower)
     }
 
+    // Update the adapter's data
+    fun updateData(
+        newDeviceName: MutableList<String>,
+        newDeviceDescription: MutableList<String>,
+        newDevicePicture: MutableList<Int>
+    ) {
+        deviceName = newDeviceName
+        deviceDescription = newDeviceDescription
+        devicePicture = newDevicePicture
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.device_layout, parent, false)
         return ViewHolder(view)
