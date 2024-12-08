@@ -19,7 +19,7 @@
             android:name=".FacebbokAuthActivity"
             android:exported="false" />
         <activity
-            android:name=".GithubAuthActivity"
+            android:name=".activity.GithubAuthActivity"
             android:exported="false" />
         <activity
             android:name=".activity.DeviceActivity"

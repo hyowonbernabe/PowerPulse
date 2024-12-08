@@ -1,4 +1,4 @@
-package com.example.powerpulse
+package com.example.powerpulse.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,6 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.example.powerpulse.activity.MainActivity
 import com.facebook.AccessToken
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
