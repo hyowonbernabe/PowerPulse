@@ -16,7 +16,9 @@ class HomeViewModel : ViewModel() {
 
     init {
         // Add a prototype device
-        addDevice("Prototype Device", "Prototype Description", R.drawable.ic_plug)
+        for (i in 1..9) {
+            addDevice("Prototype Device $i", "Prototype Description $i", R.drawable.ic_plug)
+        }
     }
 
     fun addDevice(name: String, description: String, picture: Int) {
