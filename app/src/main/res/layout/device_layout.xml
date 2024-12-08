@@ -90,7 +90,6 @@
             android:padding="16dp">
 
             <LinearLayout
-                android:id="@+id/DeviceTimeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -117,7 +116,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
 
                 <ImageView
                     android:id="@+id/DeviceSunday"
@@ -170,17 +170,40 @@
 
             </LinearLayout>
 
-
-
-            <TextView
-                android:id="@+id/expandableCalendar"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_calendar"
-                android:drawablePadding="8dp"
-                android:padding="8dp"
-                android:text="Add Schedule"
-                android:textColor="@color/black"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Action"
+                    android:textColor="@color/black"
+                    android:paddingStart="8dp"/>
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="2dp">
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTurnOff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Turn Off"
+                        android:paddingEnd="72dp"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButtonTurnOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Turn On"/>
+
+                </RadioGroup>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/expandableDelete"

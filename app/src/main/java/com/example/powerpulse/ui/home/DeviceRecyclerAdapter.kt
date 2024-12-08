@@ -42,9 +42,6 @@ class DeviceRecyclerAdapter(
         val chevron: ImageView = itemView.findViewById(R.id.imageViewChevronDown)
         val disconnectDevice: TextView = itemView.findViewById(R.id.expandableDelete)
         val switchPower: Switch = itemView.findViewById(R.id.switchPower)
-        val deviceTime: TextView = itemView.findViewById(R.id.DeviceTime)
-        val deviceTimeAMPM: TextView = itemView.findViewById(R.id.DeviceTimeAMPM)
-        val deviceTimeButton: LinearLayout = itemView.findViewById(R.id.DeviceTimeButton)
     }
 
     // Update the adapter's data
