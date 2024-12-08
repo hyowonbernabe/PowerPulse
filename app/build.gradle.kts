@@ -63,4 +63,5 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.glide)
     implementation(libs.play.services.auth)
+    implementation(libs.mpandroidchart)
 }
