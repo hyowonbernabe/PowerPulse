@@ -13,6 +13,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.powerpulse.R
 import com.example.powerpulse.databinding.FragmentHomeBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class HomeFragment : Fragment() {
 
@@ -22,6 +27,9 @@ class HomeFragment : Fragment() {
     // Shared ViewModel
     private val homeViewModel: HomeViewModel by activityViewModels()
 
+    // Firebase Database reference
+    private lateinit var database: DatabaseReference
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,6 +37,9 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        // Initialize Firebase Database reference
+        database = FirebaseDatabase.getInstance("https://powerpulse-56790-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("device1")
 
         // Initialize RecyclerView
         val adapter = DeviceRecyclerAdapter(
@@ -55,7 +66,24 @@ class HomeFragment : Fragment() {
             showPairDeviceDialog()
         }
 
+        // Listen for 'power' changes in Firebase
+        observePowerValue()
+
         return root
+    }
+
+    private fun observePowerValue() {
+        // Listen to the 'power' field in the 'device1' node
+        database.child("power").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val power = snapshot.getValue(Int::class.java) ?: 0
+                binding.textViewPowerNumber.text = power.toString() + " Power"
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle database error
+            }
+        })
     }
 
     private fun showPairDeviceDialog() {
