@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +24,9 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    // Initialize totalPowerConsumed as a mutable variable
+    private var totalPowerConsumed: Float = 0F
 
     // Shared ViewModel
     private val homeViewModel: HomeViewModel by activityViewModels()
@@ -61,9 +65,13 @@ class HomeFragment : Fragment() {
             )
         }
 
+        // Device Count
+        val deviceCount: Int = adapter.itemCount
+        binding.textViewDeviceCount.text = "$deviceCount"
+
         // Pair Button logic
         binding.imageViewPairButton.setOnClickListener {
-            showPairDeviceDialog()
+            showPairDeviceDialog(adapter)
         }
 
         // Listen for 'power' changes in Firebase
@@ -73,11 +81,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun observePowerValue() {
-        // Listen to the 'power' field in the 'device1' node
         database.child("power").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val power = snapshot.getValue(Int::class.java) ?: 0
-                binding.textViewPowerNumber.text = power.toString() + " Power"
+                val consumed: Float
+
+                consumed = ((power * 0.0008333) / 1000).toFloat()
+
+                totalPowerConsumed += consumed
+                val totalPowerConsumedCost = totalPowerConsumed * 10.7327
+                binding.textViewPowerNumber.text = String.format("%.6f kWh", totalPowerConsumed)
+                binding.textViewDeviceCost.text = String.format("%.3f ₱", totalPowerConsumedCost)
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -86,7 +101,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun showPairDeviceDialog() {
+    private fun showPairDeviceDialog(adapter: DeviceRecyclerAdapter) {
         val view = layoutInflater.inflate(R.layout.pair_dialogue, null)
         val builder = AlertDialog.Builder(requireContext())
         builder.setView(view)
@@ -128,6 +143,9 @@ class HomeFragment : Fragment() {
             }
 
             homeViewModel.addDevice(deviceName, deviceDescription, R.drawable.ic_plug)
+
+            val deviceCount: Int = adapter.itemCount
+            binding.textViewDeviceCount.text = "$deviceCount"
 
             // Update the RecyclerView by re-initializing it with updated data
             initializeRecyclerView()

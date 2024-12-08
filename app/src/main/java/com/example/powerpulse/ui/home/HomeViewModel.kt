@@ -17,8 +17,12 @@ class HomeViewModel : ViewModel() {
     init {
         // Add a prototype device
         addDevice("Prototype Device", "Device to be demonstrated", R.drawable.ic_plug)
-        addDevice("Other Device", "Lorem Ipsum", R.drawable.ic_plug)
-        addDevice("Aaron's Computer", "WAG I-OFF", R.drawable.ic_plug)
+        addDevice("Air Conditioner", "Lorem Ipsum", R.drawable.ic_plug)
+        addDevice("Hyowon's Computer", "WAG I-OFF", R.drawable.ic_plug)
+        addDevice("Switch ni Kyle", "Tara laro", R.drawable.ic_plug)
+        addDevice("SLU TV", "Baka magalit si ma'am", R.drawable.ic_plug)
+        addDevice("Fridge ni Aaron", "200g protein", R.drawable.ic_plug)
+        addDevice("Joeffrey's Fan", "HNGGGGGGGGGGGGG", R.drawable.ic_plug)
     }
 
     fun addDevice(name: String, description: String, picture: Int) {
