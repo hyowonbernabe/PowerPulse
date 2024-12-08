@@ -1,7 +1,6 @@
 package com.example.powerpulse.activity
 
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +18,7 @@ class DeviceActivity : AppCompatActivity() {
         val textViewDeviceName = findViewById<TextView>(R.id.textViewDeviceName)
         val textViewDeviceDescription = findViewById<TextView>(R.id.textViewDeviceDescription)
         val textViewDayEle = findViewById<TextView>(R.id.textViewDayEle)
-        val textViewMonthEle = findViewById<TextView>(R.id.textViewMonthEle)
+        val textViewMonthEle = findViewById<TextView>(R.id.textViewConsumption)
         val TextViewPowerText = findViewById<TextView>(R.id.textViewPowerText)
 
         // Get data from intent
