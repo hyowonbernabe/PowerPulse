@@ -10,7 +10,7 @@ import com.example.powerpulse.R
 import com.example.powerpulse.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-open class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
