@@ -1,6 +1,7 @@
 package com.example.powerpulse.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -10,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.powerpulse.GithubAuthActivity
 import com.example.powerpulse.R
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -50,6 +52,13 @@ class SignInActivity : AppCompatActivity() {
         enableEdgeToEdge() // Make status bar transparent for cleaner look
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
+
+        val btnGitHub = findViewById<ImageButton>(R.id.imageButtonGitHub)
+        btnGitHub.setOnClickListener {
+            val intent = Intent(this, GithubAuthActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            startActivity(intent)
+        }
 
         val callbackManager = CallbackManager.Factory.create()
         LoginManager.getInstance().registerCallback(callbackManager,
