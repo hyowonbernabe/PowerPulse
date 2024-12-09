@@ -63,6 +63,12 @@ class SignInActivity : AppCompatActivity() {
         val editTextPassword = findViewById<EditText>(R.id.editTextPassword)
         val buttonSignIn = findViewById<Button>(R.id.buttonSignIn)
         val textSignUp = findViewById<TextView>(R.id.textViewSignUp)
+        val textForgotPassword = findViewById<TextView>(R.id.textForgotPassword)
+
+        textForgotPassword.setOnClickListener {
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
 
         buttonSignIn.setOnClickListener {
             val emailSignIn = editTextEmail.text.toString().trim()

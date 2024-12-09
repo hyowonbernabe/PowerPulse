@@ -12,8 +12,6 @@ import com.example.powerpulse.databinding.FragmentAnalyticsBinding
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.formatter.ValueFormatter
 
 class AnalyticsFragment : Fragment() {
