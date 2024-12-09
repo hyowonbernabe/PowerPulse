@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,9 +22,11 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private var powerValueListener: ValueEventListener? = null
 
-    // Initialize totalPowerConsumed as a mutable variable
-    private var totalPowerConsumed: Float = 0F
+    object PowerConsumptionManager {
+        var totalPowerConsumed: Float = 0.0f
+    }
 
     // Shared ViewModel
     private val homeViewModel: HomeViewModel by activityViewModels()
@@ -75,30 +75,55 @@ class HomeFragment : Fragment() {
         }
 
         // Listen for 'power' changes in Firebase
-        observePowerValue()
+        observeRelayState()
 
         return root
     }
 
-    private fun observePowerValue() {
-        database.child("power").addValueEventListener(object : ValueEventListener {
+    private fun observeRelayState() {
+        database.child("relayState").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val power = snapshot.getValue(Int::class.java) ?: 0
-                val consumed: Float
-
-                consumed = ((power * 0.0008333) / 1000).toFloat()
-
-                totalPowerConsumed += consumed
-                val totalPowerConsumedCost = totalPowerConsumed * 10.7327
-                binding.textViewPowerNumber.text = String.format("%.6f kWh", totalPowerConsumed)
-                binding.textViewDeviceCost.text = String.format("%.3f ₱", totalPowerConsumedCost)
-
+                val relayState = snapshot.getValue(Boolean::class.java) ?: false
+                if (relayState) {
+                    stopObservePowerValue()
+                } else {
+                    startObservePowerValue()
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 // Handle database error
             }
         })
+    }
+
+    private fun startObservePowerValue() {
+        if (powerValueListener == null) {
+            powerValueListener = object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val power = snapshot.getValue(Int::class.java) ?: 0
+                    val consumed = ((power * 0.0008333) / 1000).toFloat()
+
+                    PowerConsumptionManager.totalPowerConsumed += consumed
+                    val totalPowerConsumedCost = PowerConsumptionManager.totalPowerConsumed * 10.7327
+
+                    binding.textViewPowerNumber.text = String.format("%.6f kWh", PowerConsumptionManager.totalPowerConsumed)
+                    binding.textViewDeviceCost.text = String.format("%.3f ₱", totalPowerConsumedCost)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle database error
+                }
+            }
+            database.child("power").addValueEventListener(powerValueListener!!)
+        }
+    }
+
+    private fun stopObservePowerValue() {
+        if (powerValueListener != null) {
+            database.child("power").removeEventListener(powerValueListener!!)
+            powerValueListener = null
+        }
     }
 
     private fun showPairDeviceDialog(adapter: DeviceRecyclerAdapter) {

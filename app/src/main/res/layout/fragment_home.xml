@@ -63,7 +63,7 @@
                 style="@style/TEXT"
                 android:drawableStart="@drawable/ic_energy"
                 android:drawablePadding="8dp"
-                android:text="0.54 kWh"
+                android:text="0.000100 kWh"
                 android:textSize="32dp"
                 android:textStyle="bold" />
 

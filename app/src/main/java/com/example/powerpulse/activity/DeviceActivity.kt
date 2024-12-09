@@ -1,13 +1,13 @@
 package com.example.powerpulse.activity
 
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.powerpulse.R
+import com.example.powerpulse.ui.home.HomeFragment.PowerConsumptionManager.totalPowerConsumed
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -16,8 +16,6 @@ import com.google.firebase.database.ValueEventListener
 
 class DeviceActivity : AppCompatActivity() {
 
-    // Initialize totalPowerConsumed as a mutable variable
-    private var totalPowerConsumed: Float = 0F
 
     // Firebase Database reference
     private lateinit var database: DatabaseReference
@@ -64,14 +62,9 @@ class DeviceActivity : AppCompatActivity() {
         database.child("power").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val power = snapshot.getValue(Int::class.java) ?: 0
-                val consumed: Float
 
-                consumed = ((power * 0.0008333) / 1000).toFloat()
-
-                totalPowerConsumed += consumed
                 textViewCurrentWatts.text = "$power W"
                 textViewTotalKWH.text = String.format("%.3f kWh", totalPowerConsumed)
-
             }
 
             override fun onCancelled(error: DatabaseError) {
