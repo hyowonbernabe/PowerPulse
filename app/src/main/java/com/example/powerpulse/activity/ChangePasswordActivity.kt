@@ -31,21 +31,31 @@ class ChangePasswordActivity : AppCompatActivity() {
         realtimeDB = FirebaseDatabase.getInstance("https://powerpulse-56790-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
 
         val editTextProfileOldPassword = findViewById<EditText>(R.id.editTextProfileOldPassword)
-        val editTextChangeProfileConfirmPassword = findViewById<EditText>(R.id.editTextChangeProfileConfirmPassword)
         val editTextProfileNewPassword = findViewById<EditText>(R.id.editTextProfileNewPassword)
+        val editTextChangeProfileConfirmPassword = findViewById<EditText>(R.id.editTextChangeProfileConfirmPassword)
         val buttonChangePassword = findViewById<Button>(R.id.buttonChangePassword)
 
         buttonChangePassword.setOnClickListener {
             val oldPassword = editTextProfileOldPassword.text.toString().trim()
-            val confirmPassword = editTextChangeProfileConfirmPassword.text.toString().trim()
             val newPassword = editTextProfileNewPassword.text.toString().trim()
+            val confirmPassword = editTextChangeProfileConfirmPassword.text.toString().trim()
 
-            if (TextUtils.isEmpty(newPassword) || TextUtils.isEmpty(confirmPassword) || TextUtils.isEmpty(oldPassword)) {
-                Toast.makeText(this, "Both fields are required.", Toast.LENGTH_SHORT).show()
+            if (TextUtils.isEmpty(oldPassword)) {
+                editTextProfileOldPassword.error = "Old Password cannot be empty"
                 return@setOnClickListener
             }
 
-            if (oldPassword != confirmPassword) {
+            if (TextUtils.isEmpty(newPassword)) {
+                editTextProfileNewPassword.error = "New Password cannot be empty"
+                return@setOnClickListener
+            }
+
+            if (TextUtils.isEmpty(confirmPassword)) {
+                editTextChangeProfileConfirmPassword.error = "Confirm Password cannot be empty"
+                return@setOnClickListener
+            }
+
+            if (confirmPassword != newPassword) {
                 Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
