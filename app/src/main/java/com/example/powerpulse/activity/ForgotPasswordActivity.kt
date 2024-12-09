@@ -45,10 +45,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Password reset email sent.", Toast.LENGTH_SHORT).show()
-
-                        val intent = Intent(this, ResetPasswordActivity::class.java)
-                        startActivity(intent)
-                        finish()
                     } else {
                         Toast.makeText(this, "Failed to send reset email.", Toast.LENGTH_SHORT).show()
                     }

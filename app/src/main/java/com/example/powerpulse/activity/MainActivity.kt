@@ -37,21 +37,4 @@ open class MainActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
     }
-
-    private fun applyTheme() {
-        val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val isDarkMode = sharedPreferences.getBoolean("DARK_MODE", false)
-
-        val currentNightMode = AppCompatDelegate.getDefaultNightMode()
-        val desiredNightMode = if (isDarkMode) {
-            AppCompatDelegate.MODE_NIGHT_YES
-        } else {
-            AppCompatDelegate.MODE_NIGHT_NO
-        }
-
-        if (currentNightMode != desiredNightMode) {
-            AppCompatDelegate.setDefaultNightMode(desiredNightMode)
-        }
-    }
-
 }
