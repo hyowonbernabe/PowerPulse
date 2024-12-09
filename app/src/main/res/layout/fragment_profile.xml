@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     style="@style/SCREEN"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -84,10 +84,11 @@
                         android:text="Dark Mode"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:paddingRight="170dp"/>
 
                     <Switch
-                        android:id="@id/buttonDarkMode"
+                        android:id="@+id/switchDarkMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"

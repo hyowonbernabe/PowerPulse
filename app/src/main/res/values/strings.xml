@@ -48,9 +48,4 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
 
-    <string name="facebook_app_id">1234</string>
-    <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">56789</string>
-
-    <string name="default_web_client_id">271716606314-q7pej45h4hpamccm0n4rjqauj5bfcf9t.apps.googleusercontent.com</string>
 </resources>

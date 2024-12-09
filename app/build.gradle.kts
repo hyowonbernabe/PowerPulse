@@ -64,5 +64,4 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.play.services.auth)
     implementation(libs.mpandroidchart)
-    implementation(libs.facebook.android.sdk)
 }

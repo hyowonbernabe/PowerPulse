@@ -1,8 +1,11 @@
 package com.example.powerpulse.activity
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -17,6 +20,9 @@ open class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge() // Make status bar transparent for cleaner look
         super.onCreate(savedInstanceState)
+
+        // Apply theme based on preference
+        applyTheme()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -34,4 +40,21 @@ open class MainActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
     }
+
+    private fun applyTheme() {
+        val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val isDarkMode = sharedPreferences.getBoolean("DARK_MODE", false)
+
+        val currentNightMode = AppCompatDelegate.getDefaultNightMode()
+        val desiredNightMode = if (isDarkMode) {
+            AppCompatDelegate.MODE_NIGHT_YES
+        } else {
+            AppCompatDelegate.MODE_NIGHT_NO
+        }
+
+        if (currentNightMode != desiredNightMode) {
+            AppCompatDelegate.setDefaultNightMode(desiredNightMode)
+        }
+    }
+
 }

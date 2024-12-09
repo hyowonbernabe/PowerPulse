@@ -55,13 +55,6 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val btnFaceBook = findViewById<ImageButton>(R.id.imageButtonFacebook)
-        btnFaceBook.setOnClickListener {
-            val intent = Intent(this, FaceBookAuthActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-            startActivity(intent)
-        }
-
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 

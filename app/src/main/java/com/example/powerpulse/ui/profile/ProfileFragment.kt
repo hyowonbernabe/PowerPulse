@@ -1,11 +1,13 @@
 package com.example.powerpulse.ui.profile
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.Switch
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.example.powerpulse.activity.SignInActivity
@@ -22,17 +24,35 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Initialize View Binding
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val buttonSignOut: CardView = binding.buttonSignOut
+        val switchDarkMode: Switch = binding.switchDarkMode
+        val signOutButton: CardView = binding.buttonSignOut
 
-        buttonSignOut.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
+        signOutButton.setOnClickListener {
+            // Get an instance of FirebaseAuth
+            val firebaseAuth = FirebaseAuth.getInstance()
+
+            // Sign out the user
+            firebaseAuth.signOut()
+
+            // Redirect the user to the login screen or a similar screen
             val intent = Intent(requireContext(), SignInActivity::class.java)
             startActivity(intent)
-            requireActivity().finish()
+        }
+
+        val sharedPreferences: SharedPreferences =
+            PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val isDarkMode = sharedPreferences.getBoolean("DARK_MODE", false)
+        switchDarkMode.isChecked = isDarkMode
+
+        switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("DARK_MODE", isChecked)
+            editor.apply()
+
+            requireActivity().recreate() // Recreate the activity to apply the theme
         }
 
         return root
