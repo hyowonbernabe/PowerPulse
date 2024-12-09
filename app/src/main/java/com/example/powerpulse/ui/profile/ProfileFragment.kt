@@ -15,8 +15,15 @@ import com.example.powerpulse.activity.PrivacyPolicyActivity
 import com.example.powerpulse.activity.SignInActivity
 import com.example.powerpulse.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ProfileFragment : Fragment() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var realtimeDB: DatabaseReference
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
@@ -28,6 +35,11 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+        realtimeDB = FirebaseDatabase.getInstance("https://powerpulse-56790-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
 
         val switchDarkMode: Switch = binding.switchDarkMode
         val signOutButton: CardView = binding.buttonSignOut
@@ -71,7 +83,24 @@ class ProfileFragment : Fragment() {
             requireActivity().recreate() // Recreate the activity to apply the theme
         }
 
+        // Update the profile name
+        updateProfileName()
+
         return root
+    }
+
+    private fun updateProfileName() {
+        val userId = auth.currentUser?.uid
+        if (userId != null) {
+            realtimeDB.child("users").child(userId).child("fullName").get().addOnSuccessListener {
+                if (it.exists()) {
+                    val fullName = it.value.toString()
+                    binding.textViewProfileName.text = "Hi, $fullName!"
+                }
+            }.addOnFailureListener {
+                // Handle the error, e.g., show a message to the user
+            }
+        }
     }
 
     override fun onDestroyView() {
