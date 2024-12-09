@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/brand_edit_text"
             android:hint="Device Name"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:padding="12dp"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"/>
@@ -46,7 +46,29 @@
             android:layout_height="wrap_content"
             android:background="@drawable/brand_edit_text"
             android:hint="Device Description"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextAccessLink"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/brand_edit_text"
+            android:hint="Access Link"
+            android:inputType="textUri"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextAccessKey"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/brand_edit_text"
+            android:hint="Access Key"
+            android:inputType="text"
             android:padding="12dp"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"/>

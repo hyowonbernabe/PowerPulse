@@ -52,6 +52,7 @@
                 android:text="Today" />
 
             <TextView
+                android:id="@+id/textViewPowerNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_energy"
@@ -80,6 +81,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/textViewDeviceCost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5.57 Peso"
@@ -101,6 +103,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/textViewDeviceCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
