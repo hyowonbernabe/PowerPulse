@@ -15,6 +15,9 @@
         android:theme="@style/Theme.PowerPulse"
         tools:targetApi="31">
         <activity
+            android:name=".activity.PrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.GithubAuthActivity"
             android:exported="false" />
         <activity

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Switch
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import com.example.powerpulse.activity.PrivacyPolicyActivity
 import com.example.powerpulse.activity.SignInActivity
 import com.example.powerpulse.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +30,13 @@ class ProfileFragment : Fragment() {
 
         val switchDarkMode: Switch = binding.switchDarkMode
         val signOutButton: CardView = binding.buttonSignOut
+        val buttonPrivacyPolicy: CardView = binding.buttonPrivacyPolicy
+
+        buttonPrivacyPolicy.setOnClickListener {
+            // Navigate to Privacy Policy fragment or activity
+            val intent = Intent(requireContext(), PrivacyPolicyActivity::class.java)
+            startActivity(intent)
+        }
 
         signOutButton.setOnClickListener {
             // Get an instance of FirebaseAuth
