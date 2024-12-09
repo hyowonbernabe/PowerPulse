@@ -81,6 +81,7 @@
                 android:id="@+id/TotalPowerWeekly"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="Total Power Weekly"

@@ -11,11 +11,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.powerpulse.R
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var realtimeDB: DatabaseReference
 
     public override fun onStart() {
         super.onStart()
@@ -35,7 +40,8 @@ class SignUpActivity : AppCompatActivity() {
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-        val db = Firebase.firestore
+        firestore = FirebaseFirestore.getInstance()
+        realtimeDB = FirebaseDatabase.getInstance("https://powerpulse-56790-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
 
         // Initialize views
         val editTextEmail = findViewById<EditText>(R.id.editTextEmailSignUp)
@@ -87,8 +93,21 @@ class SignUpActivity : AppCompatActivity() {
                             "fullName" to fullNameSignUp
                         )
 
-                        db.collection("user")
+                        firestore.collection("users")
                             .add(user)
+                            .addOnSuccessListener {
+                                // Save user data to Realtime Database as well
+                                realtimeDB.child("users").child(auth.uid!!).setValue(user)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(this, "User data saved to Realtime Database.", Toast.LENGTH_SHORT).show()
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Toast.makeText(this, "Failed to save user data to Realtime Database: ${e.message}", Toast.LENGTH_SHORT).show()
+                                    }
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(this, "Failed to save user data to Firestore: ${e.message}", Toast.LENGTH_SHORT).show()
+                            }
 
                         // Display a message to the user.
                         Toast.makeText(this, "Account created successfully.", Toast.LENGTH_SHORT).show()
