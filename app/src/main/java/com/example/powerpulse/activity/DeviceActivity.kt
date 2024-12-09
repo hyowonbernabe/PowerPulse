@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.example.powerpulse.R
-import com.example.powerpulse.`object`.PowerConsumptionManager.totalPowerConsumed
+import com.example.powerpulse.singleton.PowerConsumptionManager.totalPowerConsumed
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference

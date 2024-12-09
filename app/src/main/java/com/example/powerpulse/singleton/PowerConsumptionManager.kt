@@ -1,4 +1,4 @@
-package com.example.powerpulse.`object`
+package com.example.powerpulse.singleton
 
 import android.content.Context
 

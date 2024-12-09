@@ -12,8 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.powerpulse.R
 import com.example.powerpulse.databinding.FragmentHomeBinding
-import com.example.powerpulse.`object`.PowerConsumptionManager
-import com.example.powerpulse.`object`.PowerConsumptionManager.totalPowerConsumed
+import com.example.powerpulse.singleton.PowerConsumptionManager
+import com.example.powerpulse.singleton.PowerConsumptionManager.totalPowerConsumed
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
