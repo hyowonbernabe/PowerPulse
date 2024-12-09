@@ -38,8 +38,18 @@ class ResetPasswordActivity : AppCompatActivity() {
             val newPassword = editTextNewPassword.text.toString().trim()
             val confirmPassword = editTextChangeConfirmPassword.text.toString().trim()
 
-            if (TextUtils.isEmpty(newPassword) || TextUtils.isEmpty(confirmPassword)) {
-                Toast.makeText(this, "Both fields are required.", Toast.LENGTH_SHORT).show()
+            if (TextUtils.isEmpty(newPassword)) {
+                editTextNewPassword.error = "Password cannot be empty"
+                return@setOnClickListener
+            }
+
+            if (TextUtils.isEmpty(confirmPassword)) {
+                editTextNewPassword.error = "Password cannot be empty"
+                return@setOnClickListener
+            }
+
+            if (newPassword.length < 6) {
+                editTextNewPassword.error = "Password must be at least 6 characters long"
                 return@setOnClickListener
             }
 
