@@ -1,5 +1,6 @@
 package com.example.powerpulse.ui.home
 
+import android.app.Activity
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -89,6 +90,9 @@ class DeviceRecyclerAdapter(
         // Handle "Disconnect Device" click
         holder.disconnectDevice.setOnClickListener {
             removeItem(position)
+
+            // Update the textViewDeviceCount to reflect the updated count
+            updateDeviceCount()
         }
 
         // Navigate to DeviceActivity on item click
@@ -205,5 +209,11 @@ class DeviceRecyclerAdapter(
         devicePicture.removeAt(position)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, deviceName.size) // Updates indices of remaining items
+    }
+
+    // Function to update the device count displayed in the UI
+    private fun updateDeviceCount() {
+        val textViewDeviceCount: TextView? = (context as? Activity)?.findViewById(R.id.textViewDeviceCount)
+        textViewDeviceCount?.text = deviceName.size.toString() // Update the count
     }
 }

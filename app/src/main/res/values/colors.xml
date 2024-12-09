@@ -15,6 +15,7 @@
     <color name="brand_power_green">#00CB98</color>
     <color name="brand_power_red">#FF797B</color>'
     <color name="brand_background_white">#FFFFFF</color>
+    <color name="brand_background_gray">#E2F4F4F4</color>
 
     <!-- Brand Colors Dark Mode -->
     <color name="brand_card_dark">#1E1E1E</color>
