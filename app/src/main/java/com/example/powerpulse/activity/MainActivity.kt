@@ -21,9 +21,6 @@ open class MainActivity : AppCompatActivity() {
         enableEdgeToEdge() // Make status bar transparent for cleaner look
         super.onCreate(savedInstanceState)
 
-        // Apply theme based on preference
-        applyTheme()
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

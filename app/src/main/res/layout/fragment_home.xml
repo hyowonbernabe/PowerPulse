@@ -93,7 +93,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/TEXT"
-                        android:text="5.57 Peso"
+                        android:text="0.000 ₱"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="16dp" />
 
