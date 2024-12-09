@@ -41,7 +41,6 @@ class ProfileFragment : Fragment() {
         firestore = FirebaseFirestore.getInstance()
         realtimeDB = FirebaseDatabase.getInstance("https://powerpulse-56790-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
 
-        val switchDarkMode: Switch = binding.switchDarkMode
         val signOutButton: CardView = binding.buttonSignOut
         val buttonPrivacyPolicy: CardView = binding.buttonPrivacyPolicy
         val buttonChangePassword: CardView = binding.buttonChangePassword
@@ -70,38 +69,44 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-        val sharedPreferences: SharedPreferences =
-            PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val isDarkMode = sharedPreferences.getBoolean("DARK_MODE", false)
-        switchDarkMode.isChecked = isDarkMode
-
-        switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
-            val editor = sharedPreferences.edit()
-            editor.putBoolean("DARK_MODE", isChecked)
-            editor.apply()
-
-            requireActivity().recreate() // Recreate the activity to apply the theme
+        // Load cached name
+        val cachedName = getNameFromPreferences()
+        if (cachedName != null) {
+            binding.textViewProfileName.text = "Hi, $cachedName!"
+        } else {
+            // Fetch name from Firebase if not cached
+            val userId = auth.currentUser?.uid
+            if (userId != null) {
+                realtimeDB.child("users").child(userId).child("fullName").get()
+                    .addOnSuccessListener { snapshot ->
+                        if (snapshot.exists()) {
+                            val fullName = snapshot.value.toString()
+                            binding.textViewProfileName.text = "Hi, $fullName!"
+                            saveNameToPreferences(fullName) // Cache the name
+                        }
+                    }
+                    .addOnFailureListener {
+                        // Handle the error, e.g., show a message to the user
+                        binding.textViewProfileName.text = "Hi, User!"
+                    }
+            }
         }
-
-        // Update the profile name
-        updateProfileName()
 
         return root
     }
 
-    private fun updateProfileName() {
-        val userId = auth.currentUser?.uid
-        if (userId != null) {
-            realtimeDB.child("users").child(userId).child("fullName").get().addOnSuccessListener {
-                if (it.exists()) {
-                    val fullName = it.value.toString()
-                    binding.textViewProfileName.text = "Hi, $fullName!"
-                }
-            }.addOnFailureListener {
-                // Handle the error, e.g., show a message to the user
-            }
-        }
+    private fun saveNameToPreferences(name: String) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val editor = sharedPreferences.edit()
+        editor.putString("profile_name", name)
+        editor.apply()
     }
+
+    private fun getNameFromPreferences(): String? {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        return sharedPreferences.getString("profile_name", null)
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

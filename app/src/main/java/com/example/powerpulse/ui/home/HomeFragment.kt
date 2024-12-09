@@ -12,6 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.powerpulse.R
 import com.example.powerpulse.databinding.FragmentHomeBinding
+import com.example.powerpulse.`object`.PowerConsumptionManager
+import com.example.powerpulse.`object`.PowerConsumptionManager.totalPowerConsumed
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -23,10 +25,6 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private var powerValueListener: ValueEventListener? = null
-
-    object PowerConsumptionManager {
-        var totalPowerConsumed: Float = 0.0f
-    }
 
     // Shared ViewModel
     private val homeViewModel: HomeViewModel by activityViewModels()
@@ -74,6 +72,9 @@ class HomeFragment : Fragment() {
             showPairDeviceDialog(adapter)
         }
 
+        // Set the TextView with the current value of totalPowerConsumed
+        updatePowerTextViews()
+
         // Listen for 'power' changes in Firebase
         observeRelayState()
 
@@ -104,10 +105,11 @@ class HomeFragment : Fragment() {
                     val power = snapshot.getValue(Int::class.java) ?: 0
                     val consumed = ((power * 0.0008333) / 1000).toFloat()
 
-                    PowerConsumptionManager.totalPowerConsumed += consumed
-                    val totalPowerConsumedCost = PowerConsumptionManager.totalPowerConsumed * 10.7327
+                    totalPowerConsumed += consumed
+                    PowerConsumptionManager.savePowerConsumed(requireContext()) // Save to SharedPreferences
 
-                    binding.textViewPowerNumber.text = String.format("%.6f kWh", PowerConsumptionManager.totalPowerConsumed)
+                    val totalPowerConsumedCost = totalPowerConsumed * 10.7327
+                    binding.textViewPowerNumber.text = String.format("%.6f kWh", totalPowerConsumed)
                     binding.textViewDeviceCost.text = String.format("%.3f ₱", totalPowerConsumedCost)
                 }
 
@@ -119,11 +121,19 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     private fun stopObservePowerValue() {
         if (powerValueListener != null) {
             database.child("power").removeEventListener(powerValueListener!!)
             powerValueListener = null
         }
+    }
+
+    // Method to update TextViews displaying power consumption and cost
+    private fun updatePowerTextViews() {
+        val totalPowerConsumedCost = totalPowerConsumed * 10.7327
+        binding.textViewPowerNumber.text = String.format("%.6f kWh", totalPowerConsumed)
+        binding.textViewDeviceCost.text = String.format("%.3f ₱", totalPowerConsumedCost)
     }
 
     private fun showPairDeviceDialog(adapter: DeviceRecyclerAdapter) {

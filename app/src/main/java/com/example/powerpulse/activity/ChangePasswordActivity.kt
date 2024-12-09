@@ -23,7 +23,7 @@ class ChangePasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_reset_password)
+        setContentView(R.layout.activity_change_password)
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()

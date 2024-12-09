@@ -60,7 +60,7 @@
                     android:id="@+id/textViewCurrentWatts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0.23"
+                    android:text="0 W"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:textColor="@color/white"/>
@@ -87,7 +87,7 @@
                     android:id="@+id/textViewTotalKWH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4.32"
+                    android:text="0.000 kWh"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:textColor="@color/white"/>
