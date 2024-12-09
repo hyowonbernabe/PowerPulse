@@ -4,21 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/SCREEN"
     tools:context=".ui.profile.ProfileFragment">
 
     <LinearLayout
         android:id="@+id/linearLayoutProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/SCREEN"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/textViewProfileName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TEXT"
             android:text="Hi, Name!"
-            android:textColor="@color/black"
             android:textSize="32dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,10 +32,9 @@
             android:id="@+id/textViewProfileRole"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/TEXT"
             android:text="Owner"
             android:textSize="24dp"
-            android:textColor="@color/black"
-
             app:layout_constraintTop_toBottomOf="@+id/textViewProfileName" />
 
     </LinearLayout>
@@ -41,6 +43,7 @@
         android:id="@+id/buttonDarkMode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/SCREEN"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:focusable="true"
@@ -54,11 +57,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/SCREEN"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/SCREEN"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="16dp">
@@ -67,16 +72,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    style="@style/SCREEN"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/TEXT"
                         android:drawableStart="@drawable/ic_dark_mode"
                         android:drawablePadding="8dp"
                         android:text="Dark Mode"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -84,7 +90,8 @@
                         android:id="@id/buttonDarkMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
                 </LinearLayout>
 
@@ -98,6 +105,7 @@
         android:id="@+id/buttonAddFamilyUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/SCREEN"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:focusable="true"
@@ -111,11 +119,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/SCREEN"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/SCREEN"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="16dp">
@@ -124,16 +134,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    style="@style/SCREEN"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/TEXT"
                         android:text="Add Family Member"
                         android:drawableStart="@drawable/ic_user_plus"
                         android:drawablePadding="8dp"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 

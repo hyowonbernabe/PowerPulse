@@ -9,15 +9,15 @@ junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
-lifecycleLivedataKtxVersion = "2.6.0"
-lifecycleViewmodelKtxVersion = "2.6.0"
+lifecycleLivedataKtxVersion = "2.8.7"
+lifecycleViewmodelKtxVersion = "2.8.7"
 material = "1.12.0"
 constraintlayout = "2.2.0"
 lifecycleLivedataKtx = "2.8.7"
 lifecycleViewmodelKtx = "2.8.7"
 mpandroidchart = "v3.1.0"
-navigationFragmentKtx = "2.8.2"
-navigationUiKtx = "2.8.2"
+navigationFragmentKtx = "2.8.4"
+navigationUiKtx = "2.8.4"
 firebaseAuthKtx = "23.1.0"
 firebaseAuth = "23.1.0"
 activity = "1.9.3"
@@ -27,7 +27,9 @@ firebaseFirestoreKtx = "25.1.1"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 facebook-android-sdk = { module = "com.facebook.android:facebook-android-sdk", version.ref = "facebookAndroidSdk" }
+#noinspection SimilarGradleDependency
 androidx-lifecycle-livedata-ktx-v260 = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtxVersion" }
+#noinspection SimilarGradleDependency
 androidx-lifecycle-viewmodel-ktx-v260 = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
