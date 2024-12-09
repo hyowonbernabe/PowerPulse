@@ -1,5 +1,6 @@
 package com.example.powerpulse.ui.profile
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -69,44 +70,50 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-        // Load cached name
-        val cachedName = getNameFromPreferences()
-        if (cachedName != null) {
-            binding.textViewProfileName.text = "Hi, $cachedName!"
-        } else {
-            // Fetch name from Firebase if not cached
-            val userId = auth.currentUser?.uid
-            if (userId != null) {
-                realtimeDB.child("users").child(userId).child("fullName").get()
-                    .addOnSuccessListener { snapshot ->
-                        if (snapshot.exists()) {
-                            val fullName = snapshot.value.toString()
-                            binding.textViewProfileName.text = "Hi, $fullName!"
-                            saveNameToPreferences(fullName) // Cache the name
-                        }
-                    }
-                    .addOnFailureListener {
-                        // Handle the error, e.g., show a message to the user
-                        binding.textViewProfileName.text = "Hi, User!"
-                    }
+        val currentUserUid = auth.uid.toString()
+
+        // Update Role
+        fetchUserRole(currentUserUid) { role ->
+            if (role == "admin") {
+                binding.textViewProfileRole.text = "Admin"
+                binding.buttonViewUsers.visibility = View.VISIBLE
+            } else {
+                binding.textViewProfileRole.text = "User"
+                binding.buttonViewUsers.visibility = View.GONE
             }
+        }
+
+        // Update Name
+        fetchUserName(currentUserUid) { fullName ->
+            binding.textViewProfileName.text = "Hi, $fullName!"
         }
 
         return root
     }
 
-    private fun saveNameToPreferences(name: String) {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val editor = sharedPreferences.edit()
-        editor.putString("profile_name", name)
-        editor.apply()
+    private fun fetchUserRole(uid: String, callback: (String?) -> Unit) {
+        val database = FirebaseDatabase.getInstance("https://powerpulse-56790-default-rtdb.asia-southeast1.firebasedatabase.app/")
+        val userRef = database.getReference("users/$uid/role")
+
+        userRef.get().addOnSuccessListener { dataSnapshot ->
+            val role = dataSnapshot.getValue(String::class.java)
+            callback(role)
+        }.addOnFailureListener {
+            callback(null) // Handle errors gracefully
+        }
     }
 
-    private fun getNameFromPreferences(): String? {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        return sharedPreferences.getString("profile_name", null)
-    }
+    private fun fetchUserName(uid: String, callback: (String?) -> Unit) {
+        val database = FirebaseDatabase.getInstance("https://powerpulse-56790-default-rtdb.asia-southeast1.firebasedatabase.app/")
+        val userRef = database.getReference("users/$uid/fullName")
 
+        userRef.get().addOnSuccessListener { dataSnapshot ->
+            val fullName = dataSnapshot.getValue(String::class.java)
+            callback(fullName)
+        }.addOnFailureListener {
+            callback(null) // Handle errors gracefully
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

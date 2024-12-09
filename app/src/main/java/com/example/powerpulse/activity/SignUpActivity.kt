@@ -88,7 +88,8 @@ class SignUpActivity : AppCompatActivity() {
                         // Add user to Firestore
                         val user = hashMapOf(
                             "email" to emailSignUp,
-                            "fullName" to fullNameSignUp
+                            "fullName" to fullNameSignUp,
+                            "role" to "user" // Default Role
                         )
 
                         firestore.collection("users")

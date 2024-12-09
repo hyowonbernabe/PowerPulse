@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.provider.ContactsContract.Data
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.powerpulse.R
 import com.example.powerpulse.activity.DeviceActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class DeviceRecyclerAdapter(
@@ -72,6 +75,20 @@ class DeviceRecyclerAdapter(
         holder.deviceName.text = deviceName[position]
         holder.deviceDescription.text = deviceDescription[position]
         holder.devicePicture.setImageResource(devicePicture[position])
+
+        // Handle radioGroupPermission visibility
+        val radioGroupPermission: View = holder.itemView.findViewById(R.id.radioGroupPermission)
+
+        val auth: FirebaseAuth = FirebaseAuth.getInstance()
+        val currentUserUid = auth.uid.toString()
+
+        fetchUserRole(currentUserUid) { role ->
+            if (role == "admin") {
+                radioGroupPermission.visibility = View.VISIBLE
+            } else {
+                radioGroupPermission.visibility = View.GONE
+            }
+        }
 
         // Handle expansion state
         val isExpanded = expandedStates[position]
@@ -200,6 +217,19 @@ class DeviceRecyclerAdapter(
             }
         }
     }
+
+    private fun fetchUserRole(uid: String, callback: (String?) -> Unit) {
+        val database = FirebaseDatabase.getInstance("https://powerpulse-56790-default-rtdb.asia-southeast1.firebasedatabase.app/")
+        val userRef = database.getReference("users/$uid/role")
+
+        userRef.get().addOnSuccessListener { dataSnapshot ->
+            val role = dataSnapshot.getValue(String::class.java)
+            callback(role)
+        }.addOnFailureListener {
+            callback(null) // Handle errors gracefully
+        }
+    }
+
 
     // Remove item from lists and update RecyclerView
     private fun removeItem(position: Int) {

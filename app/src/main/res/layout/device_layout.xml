@@ -206,6 +206,42 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/radioGroupPermission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Permission"
+                    android:textColor="@color/black"
+                    android:paddingStart="8dp"/>
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="2dp">
+
+                    <RadioButton
+                        android:id="@+id/radioButtonPermissionEveryone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Everyone"
+                        android:paddingEnd="66dp"/>
+
+                    <RadioButton
+                        android:id="@+id/radioButtonPermissionAdminOnly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Admin Only"/>
+
+                </RadioGroup>
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/expandableDelete"
                 android:layout_width="wrap_content"

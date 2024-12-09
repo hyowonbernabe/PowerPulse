@@ -31,14 +31,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="Owner"
+            android:text="User"
             android:textSize="24dp"
             app:layout_constraintTop_toBottomOf="@+id/textViewProfileName" />
 
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/buttonAddFamilyUser"
+        android:id="@+id/buttonViewUsers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -73,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:text="Add Family Member"
+                        android:text="View Users"
                         android:drawableStart="@drawable/ic_user_plus"
                         android:drawablePadding="8dp"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -100,7 +100,7 @@
         app:cardElevation="4dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddFamilyUser">
+        app:layout_constraintTop_toBottomOf="@+id/buttonViewUsers">
 
         <LinearLayout
             android:layout_width="match_parent"
