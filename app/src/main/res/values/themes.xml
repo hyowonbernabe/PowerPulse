@@ -14,15 +14,4 @@
         <!-- Customize your theme here. -->
     </style>
     <!-- Base application theme. -->
-    <!--Customize your light theme here.-->
-    <style name="SCREEN">
-        <item name="android:background">@color/white</item>
-    </style>
-    <style name="TEXT">
-        <item name="android:textColor">@color/black</item>
-    </style>
-    <style name="BUTTON">
-        <item name="android:background">@color/brand_primary</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
 </resources>

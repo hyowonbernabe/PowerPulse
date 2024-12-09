@@ -3,14 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/SCREEN">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        style="@style/SCREEN"
         android:gravity="center"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="PowerPulse"
             android:textStyle="bold"
-            style="@style/TEXT"
+            android:textColor="@color/black"
             android:textSize="48sp"
             android:layout_marginBottom="32dp"/>
 
@@ -31,7 +29,6 @@
             android:id="@+id/editTextFullNameSignUp"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
-            style="@style/TEXT"
             android:background="@drawable/brand_edit_text"
             android:drawableStart="@drawable/ic_brand_username"
             android:drawablePadding="8dp"
@@ -45,7 +42,6 @@
             android:id="@+id/editTextEmailSignUp"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
-            style="@style/TEXT"
             android:background="@drawable/brand_edit_text"
             android:drawableStart="@drawable/ic_brand_email"
             android:drawablePadding="8dp"
@@ -59,7 +55,6 @@
             android:id="@+id/editTextPasswordSignUp"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
-            style="@style/TEXT"
             android:layout_marginBottom="16dp"
             android:background="@drawable/brand_edit_text"
             android:drawableStart="@drawable/ic_brand_pwd"
@@ -73,7 +68,6 @@
             android:id="@+id/editTextConfirmPasswordSignUp"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
-            style="@style/TEXT"
             android:layout_marginBottom="16dp"
             android:background="@drawable/brand_edit_text"
             android:drawableStart="@drawable/ic_brand_pwd"
@@ -94,14 +88,12 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/SCREEN"
             android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TEXT"
                 android:text="Already have an account?"
                 android:textSize="16sp" />
 

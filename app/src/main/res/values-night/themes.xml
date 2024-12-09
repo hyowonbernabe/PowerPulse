@@ -14,19 +14,4 @@
         <!-- Customize your theme here. -->
     </style>
     <!-- Base application theme. -->
-    <!-- Customize your dark theme here. -->
-    <style name="CARD">
-        <item name="android:background">@color/brand_card_dark</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-    <style name="SCREEN">
-        <item name="android:background">@color/black</item>
-    </style>
-    <style name="TEXT">
-        <item name="android:textColor">@color/white</item>
-    </style>
-    <style name="BUTTON">
-        <item name="android:background">@color/brand_primary</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
 </resources>

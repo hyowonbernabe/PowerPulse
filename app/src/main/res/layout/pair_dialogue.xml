@@ -4,14 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/SCREEN"
     android:layout_margin="16dp"
-    app:cardCornerRadius="32dp">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/SCREEN"
         android:orientation="vertical"
         android:gravity="center"
         android:padding="16dp"
@@ -23,21 +22,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TEXT"
             android:layout_marginBottom="32dp"
             android:textAlignment="center"
             android:text="Connect your device!"
+            android:textColor="@color/black"
             android:textSize="48sp"
-            android:textStyle="bold"
-            android:paddingBottom="16dp"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editTextDeviceName"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
-            style="@style/TEXT"
+            android:background="@drawable/brand_edit_text"
             android:hint="Device Name"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"/>
@@ -46,9 +44,9 @@
             android:id="@+id/editTextDeviceDescription"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
-            style="@style/TEXT"
+            android:background="@drawable/brand_edit_text"
             android:hint="Device Description"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"/>
@@ -57,9 +55,9 @@
             android:id="@+id/editTextAccessLink"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
-            style="@style/TEXT"
+            android:background="@drawable/brand_edit_text"
             android:hint="Access Link"
-            android:inputType="textUri"
+            android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"/>
@@ -68,9 +66,9 @@
             android:id="@+id/editTextAccessKey"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
-            style="@style/TEXT"
+            android:background="@drawable/brand_edit_text"
             android:hint="Access Key"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textSize="16sp"
             android:layout_marginBottom="16dp"/>
