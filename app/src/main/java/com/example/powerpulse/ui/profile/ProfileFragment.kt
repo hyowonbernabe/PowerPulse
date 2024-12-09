@@ -1,19 +1,16 @@
 package com.example.powerpulse.ui.profile
 
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.example.powerpulse.activity.ChangePasswordActivity
 import com.example.powerpulse.activity.PrivacyPolicyActivity
 import com.example.powerpulse.activity.SignInActivity
+import com.example.powerpulse.activity.UserListActivity
 import com.example.powerpulse.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -81,6 +78,12 @@ class ProfileFragment : Fragment() {
                 binding.textViewProfileRole.text = "User"
                 binding.buttonViewUsers.visibility = View.GONE
             }
+        }
+
+        binding.buttonViewUsers.setOnClickListener {
+            // Navigate to User List fragment or activity
+            val intent = Intent(requireContext(), UserListActivity::class.java)
+            startActivity(intent)
         }
 
         // Update Name
