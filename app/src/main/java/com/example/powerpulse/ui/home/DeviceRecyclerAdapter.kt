@@ -27,6 +27,11 @@ class DeviceRecyclerAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<DeviceRecyclerAdapter.ViewHolder>() {
 
+    private var scheduledHour = -1
+    private var scheduledMinute = -1
+    private var scheduledAMPM = ""
+    private val handler = android.os.Handler()
+    private var actionToPerform: String? = null // Either "ON" or "OFF"
     private val expandedStates = BooleanArray(deviceName.size)// Track expansion states
     private val switchStates = BooleanArray(deviceName.size) // Track switch states
     private val dayStates = mutableMapOf(
@@ -39,6 +44,51 @@ class DeviceRecyclerAdapter(
         "Saturday" to false
     )
 
+    private val timeCheckRunnable = object : Runnable {
+        override fun run() {
+            val calendar = java.util.Calendar.getInstance()
+            val currentHour = calendar.get(java.util.Calendar.HOUR_OF_DAY)
+            val currentMinute = calendar.get(java.util.Calendar.MINUTE)
+            val currentAMPM = if (calendar.get(java.util.Calendar.AM_PM) == java.util.Calendar.AM) "AM" else "PM"
+
+            if (currentHour == scheduledHour && currentMinute == scheduledMinute && currentAMPM == scheduledAMPM) {
+                // Perform the scheduled action for position 0
+                if (actionToPerform == "ON") {
+                    switchStates[0] = true
+                } else if (actionToPerform == "OFF") {
+                    switchStates[0] = false
+                }
+
+                // Reset the scheduled action
+                scheduledHour = -1
+                scheduledMinute = -1
+                scheduledAMPM = ""
+                actionToPerform = null
+
+                notifyItemChanged(0)
+            }
+
+            handler.postDelayed(this, 1000) // Check again in 1 second
+        }
+    }
+
+    fun startPeriodicCheck() {
+        handler.post(timeCheckRunnable)
+    }
+
+    fun stopPeriodicCheck() {
+        handler.removeCallbacks(timeCheckRunnable)
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        startPeriodicCheck() // Start checking when RecyclerView is attached
+    }
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        stopPeriodicCheck() // Stop checking when RecyclerView is detached
+    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val deviceName: TextView = itemView.findViewById(R.id.RecyclerDeviceName)
@@ -155,30 +205,47 @@ class DeviceRecyclerAdapter(
 
         // TimePicker logic
         val deviceTimeTextView: TextView = holder.itemView.findViewById(R.id.DeviceTime)
-        deviceTimeTextView.setOnClickListener {
-            val currentHour = 12
-            val currentMinute = 0
-            val is24HourFormat = false // Use 12-hour format
+        val radioButtonTurnOn: View = holder.itemView.findViewById(R.id.radioButtonTurnOn)
+        val radioButtonTurnOff: View = holder.itemView.findViewById(R.id.radioButtonTurnOff)
 
+        deviceTimeTextView.setOnClickListener {
             val timePickerDialog = TimePickerDialog(
                 context,
                 { _, hourOfDay, minute ->
-                    // Update the time text
+                    // Format time and update the TextViews
                     val amPm = if (hourOfDay >= 12) "PM" else "AM"
                     val formattedHour = if (hourOfDay % 12 == 0) 12 else hourOfDay % 12
                     val formattedTime = String.format("%02d:%02d", formattedHour, minute)
-
-                    // Update TextViews
                     deviceTimeTextView.text = formattedTime
                     val amPmTextView: TextView = holder.itemView.findViewById(R.id.DeviceTimeAMPM)
                     amPmTextView.text = amPm
+
+                    // Store the scheduled time for position 0
+                    if (position == 0) {
+                        scheduledHour = hourOfDay
+                        scheduledMinute = minute
+                        scheduledAMPM = amPm
+                    }
                 },
-                currentHour,
-                currentMinute,
-                is24HourFormat
+                12, 0, false // Default time
             )
             timePickerDialog.show()
         }
+
+        // Handle radio button actions
+        radioButtonTurnOn.setOnClickListener {
+            if (position == 0) {
+                actionToPerform = "ON"
+            }
+        }
+
+        radioButtonTurnOff.setOnClickListener {
+            if (position == 0) {
+                actionToPerform = "OFF"
+            }
+        }
+
+
 
         // Configure each day's click listener
         val days = listOf(
@@ -229,7 +296,6 @@ class DeviceRecyclerAdapter(
             callback(null) // Handle errors gracefully
         }
     }
-
 
     // Remove item from lists and update RecyclerView
     private fun removeItem(position: Int) {
