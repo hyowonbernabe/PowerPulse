@@ -21,7 +21,6 @@
             android:layout_height="wrap_content"
             android:text="PowerPulse"
             android:textStyle="bold"
-            android:textColor="@color/black"
             android:textSize="48sp"
             android:layout_marginBottom="32dp"/>
 

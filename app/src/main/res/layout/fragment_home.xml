@@ -49,14 +49,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:text="Today" />
 
             <TextView
                 android:id="@+id/textViewPowerNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:drawableStart="@drawable/ic_energy"
                 android:drawablePadding="8dp"
                 android:text="0.000100 kWh"
@@ -77,7 +75,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:text="Cost"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textStyle="bold" />
@@ -86,7 +83,6 @@
                         android:id="@+id/textViewDeviceCost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:text="0.000 ₱"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="16dp" />
@@ -101,7 +97,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:text="Devices"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textStyle="bold" />
@@ -110,7 +105,6 @@
                         android:id="@+id/textViewDeviceCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:text="4"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textSize="16dp" />

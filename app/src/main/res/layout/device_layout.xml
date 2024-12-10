@@ -47,7 +47,6 @@
                     android:text="Prototype Device"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <TextView
@@ -100,7 +99,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4:00"
-                    android:textColor="@color/black"
                     android:textSize="32dp"
                     android:textStyle="bold"
                     android:paddingLeft="8dp"/>
@@ -109,8 +107,7 @@
                     android:id="@+id/DeviceTimeAMPM"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AM"
-                    android:textColor="@color/black"/>
+                    android:text="AM" />
 
             </LinearLayout>
 
@@ -180,7 +177,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Action"
-                    android:textColor="@color/black"
                     android:paddingStart="8dp"/>
 
                 <RadioGroup
@@ -216,7 +212,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Permission"
-                    android:textColor="@color/black"
                     android:paddingStart="8dp"/>
 
                 <RadioGroup
@@ -249,8 +244,7 @@
                 android:drawableStart="@drawable/ic_trash"
                 android:drawablePadding="8dp"
                 android:padding="8dp"
-                android:text="Disconnect Device"
-                android:textColor="@color/black"/>
+                android:text="Disconnect Device"/>
 
         </LinearLayout>
     </LinearLayout>
